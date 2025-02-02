@@ -78,11 +78,11 @@ app.delete('/users/:id', (req, res) => {
 });
 
 // Manejo de errores
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Error interno en el servidor' });
-});
-
+app.use((req, res, next) => {
+  console.log(`Petición: ${req.method} ${req.url}`);
+  next();
+ });
+ 
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
